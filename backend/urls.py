@@ -4,5 +4,6 @@ from rest_framework.routers import DefaultRouter
 from .views import TaskViewSet
 
 urlpatterns = [
-    path('tasks/',TaskViewSet.as_view(),name = "task")
+    path('tasks/',TaskViewSet.as_view(),name = "task"),
+    path('tasks/<int:pk>/', TaskViewSet.as_view(),name = "task-detail")
 ]

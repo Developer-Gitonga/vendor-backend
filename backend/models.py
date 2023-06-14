@@ -1,9 +1,10 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
 class Task(models.Model):
-     vendor_id = models.CharField(max_length=50)
+     id = models.IntegerField(primary_key=True)
      task_type = models.CharField(max_length=50)
      description = models.TextField()
      created_at = models.DateTimeField(auto_now_add=True)
@@ -12,13 +13,13 @@ class Task(models.Model):
 #  def __str__(self):
 #         return self.description
 
-class Form(models.Model):
+class Catalogue(models.Model):
     pass
     # id = models.IntegerField(primary_key=True)
     # task_id = models.ForeignKey(Task, on_delete=models.CASCADE)
     # name = models.Textfield()
     # description = models.TextField()
-    # fields = models.TextField()
+    # offers = models.TextField()
     # created_at = models.DateTimeField(auto_now_add=True)
     # updated_at =  models.DateTimeField(auto_now=True)
 

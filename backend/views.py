@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Task
 from rest_framework import viewsets
 from .serializers import TaskSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from  rest_framework import status
-
+from rest_framework.generics import UpdateAPIView, DestroyAPIView
 
 # Create your views here.
 class TaskViewSet(APIView):
@@ -38,7 +38,49 @@ class TaskViewSet(APIView):
                     "errors":serializer.errors
                 }
             )
+    def put(self, request):
+        task = get_object_or_404(Task)
+        serializer = self.serializer_class(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                status=status.HTTP_200_OK,
+                data={
+                    "status":"success"
+                }
+            )
+        else:
+            return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+                data={
+                    "errors":serializer.errors
+                }
+            )
+    def patch(self, request):
+        task = get_object_or_404(Task)
+        serializer = self.serializer_class(task, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                status=status.HTTP_200_OK,
+                data={
+                    "status":"success"
+                }
+            )
+        else:
+            return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+                data={
+                    "errors":serializer.errors
+                }
+            )
+    def delete(self, request):
+        task = get_object_or_404(Task)
+        task.delete()
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
 
-# def form_list(request):
-#     forms = Form.objects.all()
-#     return render(request, {'forms': forms})
+    # def form_list(request):
+    #     forms = Form.objects.all()
+    #     return render(request, {'forms': forms})
