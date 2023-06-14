@@ -15,7 +15,6 @@ class TaskViewSet(APIView):
     def get(self, request):
         queryset = Task.objects.all()
         serializer = self.serializer_class(queryset, many = True)
-
         return Response(
             status=status.HTTP_200_OK,
             data=serializer.data
@@ -30,7 +29,6 @@ class TaskViewSet(APIView):
                     "status":"success"
                 }
             )
-
         else:
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,
@@ -39,7 +37,7 @@ class TaskViewSet(APIView):
                 }
             )
     def put(self, request):
-        task = get_object_or_404(Task)
+        task = Task.objects.all()
         serializer = self.serializer_class(task, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -57,7 +55,7 @@ class TaskViewSet(APIView):
                 }
             )
     def patch(self, request):
-        task = get_object_or_404(Task)
+        task = Task.objects.all()
         serializer = self.serializer_class(task, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -75,12 +73,10 @@ class TaskViewSet(APIView):
                 }
             )
     def delete(self, request):
-        task = get_object_or_404(Task)
+        task = Task.objects.all()
         task.delete()
         return Response(
             status=status.HTTP_204_NO_CONTENT
         )
 
-    # def form_list(request):
-    #     forms = Form.objects.all()
-    #     return render(request, {'forms': forms})
+  

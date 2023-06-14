@@ -1,10 +1,8 @@
 from django.db import models
-import uuid
 
 # Create your models here.
 
 class Task(models.Model):
-     id = models.IntegerField(primary_key=True)
      task_type = models.CharField(max_length=50)
      description = models.TextField()
      created_at = models.DateTimeField(auto_now_add=True)

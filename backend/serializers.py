@@ -8,7 +8,3 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class FormSerializer(ModelSerializer):
-#     class Meta:
-#         model = Form
-#         fields = '__all__'
