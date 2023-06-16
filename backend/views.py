@@ -95,7 +95,7 @@ class CatalogueViewSet(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(
-                statsu=status.HTTP_200_OK,
+                status=status.HTTP_200_OK,
                 data={
                     "status":"success"
                 }
